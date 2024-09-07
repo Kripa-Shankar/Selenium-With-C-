@@ -25,7 +25,7 @@ namespace DotNetSelenium.Pages
 
         public void ClickLogin()
         {
-            //LoginLink.Click();
+            LoginLink.Click();
 
             //SeleniumCustomMethods2.Click(LoginLink);
         }
