@@ -27,7 +27,7 @@ namespace DotNetSelenium.Pages
         {
             //LoginLink.Click();
 
-            SeleniumCustomMethods2.Click(LoginLink);
+            //SeleniumCustomMethods2.Click(LoginLink);
         }
         public void Login(string username, string password)
         {
@@ -36,9 +36,14 @@ namespace DotNetSelenium.Pages
 
             //BtnLogin.Submit();
 
-            SeleniumCustomMethods2.EnterText(TxtUserName, "admin");
-            SeleniumCustomMethods2.EnterText(TxtPassword, "password");
-            SeleniumCustomMethods2.Click(BtnLogin);
+            //SeleniumCustomMethods2.EnterText(TxtUserName, "admin");
+            //SeleniumCustomMethods2.EnterText(TxtPassword, "password");
+            //SeleniumCustomMethods2.Click(BtnLogin);
+
+
+            TxtUserName.EnterText(username);
+            TxtPassword.EnterText(password);
+            BtnLogin.Submit();
         }
     }
 }

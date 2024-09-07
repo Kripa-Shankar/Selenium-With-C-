@@ -54,17 +54,17 @@ namespace DotNetSelenium
 
            //driver.FindElement(By.LinkText("Login")).Click();
 
-            SeleniumCustomMethods.Click(driver, By.Id("loginLink"));
+            //SeleniumCustomMethods.Click(driver, By.Id("loginLink"));
 
             //IWebElement txtUserName = driver.FindElement(By.Id("UserName"));
             //txtUserName.SendKeys("admin");
 
-            SeleniumCustomMethods.EnterText(driver, By.Id("UserName"), "admin");
+            //SeleniumCustomMethods.EnterText(driver, By.Id("UserName"), "admin");
 
             //IWebElement txtPassword = driver.FindElement(By.Name("Password"));
             //txtPassword.SendKeys("password");
 
-            SeleniumCustomMethods.EnterText(driver, By.Name("Password"), "password");
+            //SeleniumCustomMethods.EnterText(driver, By.Name("Password"), "password");
 
             IWebElement btnLogin = driver.FindElement(By.ClassName("btn"));
             btnLogin.Submit();
