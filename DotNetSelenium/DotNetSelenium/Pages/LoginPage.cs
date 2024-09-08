@@ -23,6 +23,10 @@ namespace DotNetSelenium.Pages
 
         IWebElement BtnLogin => driver.FindElement(By.CssSelector(".btn"));
 
+        IWebElement LnkEmployeeDetails => driver.FindElement(By.LinkText("Employee Details"));
+        IWebElement LnkManageUsers => driver.FindElement(By.LinkText("Manage Users"));
+        IWebElement LnkLogOff => driver.FindElement(By.LinkText("Log off"));
+
         public void ClickLogin()
         {
             LoginLink.Click();
@@ -44,6 +48,11 @@ namespace DotNetSelenium.Pages
             TxtUserName.EnterText(username);
             TxtPassword.EnterText(password);
             BtnLogin.Submit();
+        }
+
+        public bool IsLoggegInd()
+        {
+            return LnkEmployeeDetails.Displayed;
         }
     }
 }

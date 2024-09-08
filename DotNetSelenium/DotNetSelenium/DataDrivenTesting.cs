@@ -24,12 +24,18 @@ namespace DotNetSelenium
         [TestCaseSource(nameof(LoginJsonDataSource))]
         public void TestUsingPOM(LoginModel loginModel)
         {
-
+            //Arrange Opereation
             LoginPage loginPage = new LoginPage(_driver);
 
+            //Act Operations
             loginPage.ClickLogin();
-
             loginPage.Login(loginModel.UserName, loginModel.Password);
+
+            //Assert
+
+            var getLoggedIn=loginPage.IsLoggegInd();
+            Assert.IsTrue(getLoggedIn);
+
         }
 
         public static IEnumerable<LoginModel> Login()
