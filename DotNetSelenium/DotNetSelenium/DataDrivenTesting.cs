@@ -1,30 +1,27 @@
 ﻿using DotNetSelenium.Pages;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenQA.Selenium.Chrome;
+using System.Text.Json;
 
 namespace DotNetSelenium
 {
     public class DataDrivenTesting
     {
         private IWebDriver _driver;
-      
-        
+
+
         [SetUp]
         public void SetUp()
         {
             _driver = new ChromeDriver();
             _driver.Navigate().GoToUrl("http://eaapp.somee.com");
             _driver.Manage().Window.Maximize();
+            //ReadJsonFile();
         }
 
         [Test]
         [Category("ddt")]
-        [TestCaseSource(nameof(Login))]
+        [TestCaseSource(nameof(LoginJsonDataSource))]
         public void TestUsingPOM(LoginModel loginModel)
         {
 
@@ -55,6 +52,34 @@ namespace DotNetSelenium
                 Password = "password3"
             };
         }
+
+
+        public static IEnumerable<LoginModel> LoginJsonDataSource()
+        {
+            string jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "login.json");
+            var jsonString = File.ReadAllText(jsonFilePath);
+
+            var loginModel = JsonSerializer.Deserialize<List<LoginModel>>(jsonString);
+
+            foreach (var loginData in loginModel)
+            {
+                yield return loginData;
+
+            }
+        }
+
+
+        private void ReadJsonFile()
+        {
+            string jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "login.json");
+            string jsonString = File.ReadAllText(jsonFilePath);
+
+            var loginModel = JsonSerializer.Deserialize<LoginModel>(jsonString);
+
+            Console.WriteLine($"UserName: {loginModel.UserName} Password: {loginModel.Password}");
+        }
+
+
         [TearDown]
         public void TearDown()
         {
@@ -62,7 +87,7 @@ namespace DotNetSelenium
             {
                 _driver.Quit();
 
-                
+
                 _driver.Dispose();
             }
         }
